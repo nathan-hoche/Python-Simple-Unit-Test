@@ -4,5 +4,5 @@ def return_42():
 def return_value(nbr):
     return nbr
 
-def print_value():
-    print("Succeed")
+def print_hw():
+    print("Hello World!")

@@ -1,5 +1,6 @@
 import sys
 import importlib
+import io
 
 Checking_file = None
 
@@ -33,6 +34,34 @@ def check_return(fonction, arg, attempt):
         print(pcolors.red + "Fonction Crash or fonction doesn't exist." + pcolors.white)
         return -1
 
+    if value == attempt:
+        print(pcolors.green + "Succeed!" + pcolors.white)
+        return 0
+    else:
+        print(pcolors.yellow + "Don't match" + pcolors.white)
+        return 1
+
+def check_print(fonction, arg, attempt):
+    tmp_arg = ""
+    i = 0
+    for arg_value in arg:
+        if (i == 0):
+            tmp_arg += str(arg_value)
+        else:
+            tmp_arg += ", " + str(arg_value)
+        i += 1
+    value = ""
+    old_stdout = sys.stdout
+    new_stdout = io.StringIO()
+    sys.stdout = new_stdout
+    try:
+        eval('Checking_file.' + fonction + "(" + tmp_arg + ")")
+        value = new_stdout.getvalue()
+        sys.stdout = old_stdout
+    except:
+        sys.stdout = old_stdout
+        print(pcolors.red + "Fonction Crash or fonction doesn't exist." + pcolors.white)
+        return -1
     if value == attempt:
         print(pcolors.green + "Succeed!" + pcolors.white)
         return 0
