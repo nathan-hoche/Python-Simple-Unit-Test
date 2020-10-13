@@ -19,12 +19,20 @@ def init(Name, Path):
     Checking_file = importlib.import_module(Name)
 
 def check_return(fonction, arg, attempt):
-
+    tmp_arg = ""
+    i = 0
+    for arg_value in arg:
+        if (i == 0):
+            tmp_arg += str(arg_value)
+        else:
+            tmp_arg += ", " + str(arg_value)
+        i += 1
     try:
-        value = eval('Checking_file.' + fonction + "()")
+        value = eval('Checking_file.' + fonction + "(" + tmp_arg + ")")
     except:
         print(pcolors.red + "Fonction Crash or fonction doesn't exist." + pcolors.white)
         return -1
+
     if value == attempt:
         print(pcolors.green + "Succeed!" + pcolors.white)
         return 0
