@@ -19,3 +19,5 @@ YukiUT.check_return("return_value", [3, 3], 3)
 print("\nCheck_print: ")
 YukiUT.check_print("print_hw", [], "Hello World!\n")
 YukiUT.check_print("print_hw", [], "Hello")
+
+YukiUT.result()
