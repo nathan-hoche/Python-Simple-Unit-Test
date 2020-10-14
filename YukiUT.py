@@ -4,6 +4,7 @@ import io
 
 Checking_file = None
 Testing_call = [0, 0]
+fonction_calling = []
 
 class pcolors:
     pink = '\033[95m'
@@ -34,6 +35,18 @@ def result():
     print(pcolors.red + "\tFailed: " + str(Testing_call[0] - Testing_call[1]) + pcolors.white)
     print("------")
 
+def coverage():
+    fonction = dir(Checking_file)
+    nb_fonction = 0
+    for tmp in fonction:
+        if (tmp[0] != "_"):
+            nb_fonction += 1
+    nb_call_fonction = 0
+    while nb_call_fonction != len(fonction_calling):
+        nb_call_fonction += 1
+    percent = nb_call_fonction / nb_fonction * 100
+    print(pcolors.blue + "Your coverage is: " + str(percent) + "%" + pcolors.white)
+
 def check_return(fonction, arg, attempt):
     Testing_call[0] += 1
     tmp_arg = ""
@@ -49,6 +62,11 @@ def check_return(fonction, arg, attempt):
     except:
         print(pcolors.red + "Fonction Crash or fonction doesn't exist." + pcolors.white)
         return -1
+
+    try:
+        fonction_calling.index(fonction)
+    except:
+        fonction_calling.append(fonction)
 
     if value == attempt:
         print(pcolors.green + "Succeed!" + pcolors.white)
@@ -82,6 +100,12 @@ def check_print(fonction, arg, attempt):
         sys.stdout = old_stdout
         print(pcolors.red + "Fonction Crash or fonction doesn't exist." + pcolors.white)
         return -1
+
+    try:
+        fonction_calling.index(fonction)
+    except:
+        fonction_calling.append(fonction)
+
     if value == attempt:
         print(pcolors.green + "Succeed!" + pcolors.white)
         Testing_call[1] += 1

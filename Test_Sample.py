@@ -21,3 +21,5 @@ YukiUT.check_print("print_hw", [], "Hello World!\n")
 YukiUT.check_print("print_hw", [], "Hello")
 
 YukiUT.result()
+
+YukiUT.coverage()

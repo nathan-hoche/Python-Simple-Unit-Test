@@ -30,5 +30,5 @@ In this repository, you have *Test_Sample.py* where you can find sample of utili
 
 - [x] print get/except if failure
 - [x] command to print pourcent of success
-- [ ] command to print Coverage
+- [x] command to print Coverage
 - [ ] Do an install.sh to add module on sys.path
